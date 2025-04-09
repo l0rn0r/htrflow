@@ -150,3 +150,9 @@ cython_debug/
 # Ignore ruff cache
 .ruff_cache/
 docker/test_nvidia_smi.yaml
+
+# Mac
+.DS_Store
+
+# IntelliJ
+.idea/

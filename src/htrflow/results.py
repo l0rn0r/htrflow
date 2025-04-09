@@ -244,14 +244,14 @@ class Result:
 
     @classmethod
     def segmentation_result(
-        cls,
-        orig_shape: tuple[int, int],
-        metadata: dict[str, Any],
-        bboxes: Sequence[Bbox | Iterable[int]] | None = None,
-        masks: Sequence[Mask] | None = None,
-        polygons: Sequence[Polygon] | None = None,
-        scores: Iterable[float] | None = None,
-        labels: Iterable[str] | None = None,
+            cls,
+            orig_shape: tuple[int, int],
+            metadata: dict[str, Any],
+            bboxes: Sequence[Bbox | Iterable[int]] | None = None,
+            masks: Sequence[Mask] | None = None,
+            polygons: Sequence[Polygon] | None = None,
+            scores: Iterable[float] | None = None,
+            labels: Iterable[str] | None = None,
     ) -> "Result":
         """Create a segmentation result
 

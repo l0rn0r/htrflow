@@ -287,7 +287,7 @@ class Json(Serializer):
         def default(obj):
             return {k: v for k, v in obj.__dict__.items() if k not in ["mask", "_image", "parent"]}
 
-        return json.dumps(page.asdict() | metadata, default=default, indent=self.indent, ensure_ascii=False)
+        return json.dumps(page.asdict() | metadata, default=default, indent=self.indent)
 
     def serialize_collection(self, collection: Collection, **metadata):
         if self.one_file:
@@ -295,7 +295,6 @@ class Json(Serializer):
             doc = json.dumps(
                 {"collection_label": collection.label, "pages": pages},
                 indent=self.indent,
-                ensure_ascii=False,
             )
             filename = collection.label + self.extension
             return [(doc, filename)]
@@ -392,7 +391,7 @@ def save_collection(collection: Collection, serializer: str | Serializer, dest: 
     for doc, filename in serializer.serialize_collection(collection, **metadata):
         filename = os.path.join(dest, filename)
         os.makedirs(os.path.dirname(filename), exist_ok=True)
-        with open(filename, "w") as f:
+        with open(filename, "w", encoding="utf-8") as f:
             f.write(doc)
         logger.info("Wrote document to %s", filename)
 
